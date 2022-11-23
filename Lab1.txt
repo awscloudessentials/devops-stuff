@@ -1,5 +1,6 @@
-Create a new folder on your local system and your github account called "devops-stuff"
-Navigate into the folder and run git pull .....to pull the Lab1.txt file into your local machine
+Login into your github and create a new public repo called devops-stuff
+Initialize a git repo called devops-stuff in your local machine
+Navigate into the folder and run git pull https://github.com/awscloudessentials/devops-stuff.git to pull the Lab1.txt file into your local machine
 Open the Lab1.txt file in VScode editor and follow instructions to finish the lab.(Not all steps are listed, use Google)
 
 Create a keypair by running the command "ssh-keygen"
@@ -43,4 +44,6 @@ Run the command id <username> to verify you have created each user- send screens
 Run command cat /etc/passwd | grep <username> and send screenshot to verify the user access assigned- send screenshot
 Once verified run "terraform destroy"
 
+Create a hidden file called gitignore
+Add the file names of your key pairs (2 file names) into your gitignore file using cat or text editor
 Update the txt file with extra steps and push to your personal devops-stuff repo to your remote repo.
