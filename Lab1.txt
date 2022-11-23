@@ -1,0 +1,46 @@
+Create a new folder on your local system and your github account called "devops-stuff"
+Navigate into the folder and run git pull .....to pull the Lab1.txt file into your local machine
+Open the Lab1.txt file in VScode editor and follow instructions to finish the lab.(Not all steps are listed, use Google)
+
+Create a keypair by running the command "ssh-keygen"
+Enter the file name "server-pub" when prompted (this is will generate a public and a private ssh key)
+NB: No passphrase is required
+Using the cat command copy the content of the public ssh key created
+
+Create a file called main.tf and paste the text below(paste the content of your public key inside the parameter "public_key")
+resource "aws_instance" "server" {
+  ami = "ami-0b0dcb5067f052a63"
+  instance_type = "t2.micro"
+  tags = {
+    "Name" = "My-Server"
+    Description = "Company Server"
+  }
+  key_name = "server-pub"
+}
+resource "aws_key_pair" "server-pub" {
+  key_name = "server-pub"
+  public_key = "paste the content of your public key"
+  }
+
+output publicip {
+  value = aws_instance.server.public_ip
+}
+
+Run command "terraform init"
+"terraform plan"
+"terraform apply"
+NB: Login into the AWS console, go the EC2 dashboard, key pairs and observe what the terraform template configured.
+The public ip address of your server will be displayed on the screen, use this to connect to your server
+
+Connect into your server using the private key using the command below
+sudo ssh -i server-pub ec2-user@<public-ip-address>
+
+Create user the intern (Joe) with non-interactive shell
+Create the staff Nick and Steph as regular users and assign them a password
+
+Verification
+Run the command id <username> to verify you have created each user- send screenshot
+Run command cat /etc/passwd | grep <username> and send screenshot to verify the user access assigned- send screenshot
+Once verified run "terraform destroy"
+
+Update the txt file with extra steps and push to your personal devops-stuff repo to your remote repo.
